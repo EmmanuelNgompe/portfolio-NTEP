@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400&family=Space+Grotesk:wght@400&display=swap');
+
+:root {
+  --color-blue: #00457c;
+  --color-white: #fdfdff;
+  --color-slate: #3e4b5e;
+  --color-gray: #878e98;
+  --color-gray-light: #aeb5bc;
+  --color-background: #030712;
+  --color-accent: #0a78d1;
+  --font-body: 'Outfit', sans-serif;
+  --font-interface: 'Space Grotesk', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background-color: var(--color-background);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #55b4ff;
+  outline-offset: 4px;
+}
+
+[data-reveal] {
+  transition: opacity 560ms ease, transform 560ms ease;
+}
+
+[data-reveal].reveal-pending {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+.page-enter {
+  animation: page-enter 280ms ease-out both;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-reveal],
+  [data-reveal].reveal-pending,
+  [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .page-enter {
+    animation: none;
+  }
+}

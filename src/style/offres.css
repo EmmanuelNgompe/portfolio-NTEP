@@ -1,0 +1,579 @@
+.offers-hero {
+  display: grid;
+  min-height: 560px;
+  place-items: center;
+  padding: 48px 24px 72px;
+  border-bottom: 1px solid rgb(174 181 188 / 13%);
+  text-align: center;
+}
+
+.offers-hero__content {
+  width: min(100%, 760px);
+}
+
+.offers-hero h1 {
+  margin: 0;
+  color: var(--color-white);
+  font-family: var(--font-interface);
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1.08;
+}
+
+.offers-hero__content > p {
+  max-width: 650px;
+  margin: 24px auto 0;
+  color: var(--color-gray-light);
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.offers-hero__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px 26px;
+  margin-top: 40px;
+}
+
+.offers-button {
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 999px;
+  color: var(--color-white);
+  font-family: var(--font-interface);
+  font-size: 16px;
+  text-decoration: none;
+  transition: background-color 180ms ease, box-shadow 180ms ease,
+    color 180ms ease, transform 180ms ease;
+}
+
+.offers-button--primary {
+  padding: 0 28px;
+  background-color: var(--color-accent);
+  box-shadow: 0 0 28px rgb(10 120 209 / 35%);
+}
+
+.offers-button--primary:hover {
+  transform: translateY(-2px);
+  background-color: #168ce9;
+  box-shadow: 0 0 36px rgb(10 120 209 / 52%);
+}
+
+.offers-button--primary svg {
+  width: 18px;
+  height: 18px;
+}
+
+.offers-button--secondary {
+  padding: 0 4px;
+  color: var(--color-white);
+}
+
+.offers-button--secondary span {
+  color: #55b4ff;
+}
+
+.offers-button--secondary:hover {
+  color: #b5dcff;
+}
+
+.offers-button:focus-visible,
+.offers-project__content a:focus-visible {
+  outline: 2px solid #55b4ff;
+  outline-offset: 5px;
+}
+
+.offers-section {
+  border-bottom: 1px solid rgb(174 181 188 / 13%);
+}
+
+.offers-section__inner {
+  width: min(100%, 1104px);
+  margin: 0 auto;
+  padding: 88px 24px;
+}
+
+.offers-section__header {
+  max-width: 720px;
+  margin-bottom: 48px;
+}
+
+.offers-section__header h2 {
+  margin: 0;
+  color: var(--color-white);
+  font-family: var(--font-interface);
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.offers-section__header p {
+  margin: 14px 0 0;
+  color: var(--color-gray-light);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.offers-services__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.offers-service {
+  min-height: 300px;
+  padding: 32px;
+  border: 1px solid rgb(174 181 188 / 16%);
+  border-radius: 16px;
+  background-color: #0a1120;
+}
+
+.offers-service__icon-box {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid rgb(174 181 188 / 12%);
+  border-radius: 12px;
+  background-color: rgb(174 181 188 / 7%);
+  color: #0a9bff;
+}
+
+.offers-service__icon {
+  width: 22px;
+  height: 22px;
+}
+
+.offers-service h3 {
+  margin: 24px 0 0;
+  color: var(--color-white);
+  font-family: var(--font-interface);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.offers-service p {
+  margin: 14px 0 0;
+  color: var(--color-gray-light);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.offers-projects__list {
+  display: grid;
+  gap: 32px;
+}
+
+.offers-project {
+  overflow: hidden;
+  border: 1px solid rgb(174 181 188 / 16%);
+  border-radius: 16px;
+  background-color: #0a1120;
+}
+
+.offers-project__image,
+.offers-project__placeholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.offers-project__image {
+  object-fit: cover;
+}
+
+.offers-project__placeholder {
+  background: linear-gradient(140deg, #0b172a 0%, #06101f 55%, #0a1830 100%);
+}
+
+.offers-project__content {
+  padding: 28px 32px 32px;
+}
+
+.offers-project__content h3 {
+  margin: 0;
+  color: var(--color-white);
+  font-family: var(--font-interface);
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.offers-project__content p {
+  max-width: 780px;
+  margin: 12px 0 0;
+  color: var(--color-gray-light);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.offers-project__content a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 7px;
+  margin-top: 16px;
+  color: #55b4ff;
+  font-family: var(--font-interface);
+  font-size: 16px;
+  text-decoration: none;
+  transition: color 180ms ease, gap 180ms ease;
+}
+
+.offers-project__content a:hover {
+  gap: 11px;
+  color: #b5dcff;
+}
+
+.offers-faq__inner {
+  width: min(100%, 800px);
+}
+
+.offers-faq__header {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.offers-faq__list {
+  display: grid;
+  gap: 16px;
+}
+
+.offers-faq__item {
+  overflow: hidden;
+  border: 1px solid rgb(174 181 188 / 18%);
+  border-radius: 12px;
+  background-color: #0a1120;
+}
+
+.offers-faq__item h3 {
+  margin: 0;
+}
+
+.offers-faq__question {
+  display: flex;
+  width: 100%;
+  min-height: 76px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 24px;
+  border: 0;
+  background: transparent;
+  color: var(--color-white);
+  font-family: var(--font-interface);
+  font-size: 19px;
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+}
+
+.offers-faq__question:hover {
+  color: #b5dcff;
+}
+
+.offers-faq__question:focus-visible,
+.offers-contact-cta__socials a:focus-visible {
+  outline: 2px solid #55b4ff;
+  outline-offset: -4px;
+}
+
+.offers-faq__question svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  color: #0a9bff;
+  transition: transform 180ms ease;
+}
+
+.offers-faq__question svg.is-open {
+  transform: rotate(180deg);
+}
+
+.offers-faq__answer {
+  padding: 0 24px 24px;
+}
+
+.offers-faq__answer p {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+  color: var(--color-gray-light);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.offers-profile__card {
+  display: grid;
+  width: min(100%, 960px);
+  grid-template-columns: minmax(0, 256px) minmax(0, 1fr);
+  align-items: center;
+  gap: 56px;
+  margin: 0 auto;
+  padding: 48px;
+  border: 1px solid rgb(174 181 188 / 16%);
+  border-radius: 16px;
+  background-color: #0a1120;
+}
+
+.offers-profile__photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  object-fit: cover;
+  object-position: center 38%;
+}
+
+.offers-profile__content {
+  min-width: 0;
+}
+
+.offers-profile__logo {
+  display: block;
+  width: 96px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.offers-profile__content h2 {
+  margin: 0;
+  color: var(--color-white);
+  font-family: var(--font-interface);
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.offers-profile__role {
+  margin: 10px 0 0;
+  color: #55b4ff;
+  font-size: 15px;
+}
+
+.offers-profile__description {
+  margin: 24px 0 0;
+  color: var(--color-gray-light);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.offers-profile__location {
+  margin: 18px 0 0;
+  color: var(--color-gray);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.offers-contact-cta {
+  display: flex;
+  min-height: 480px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 88px 24px;
+  background: radial-gradient(
+    ellipse at 50% 42%,
+    #0879dc 0%,
+    #074b99 35%,
+    #06254e 64%,
+    #030712 100%
+  );
+  text-align: center;
+}
+
+.offers-contact-cta h2 {
+  margin: 0;
+  color: var(--color-white);
+  font-family: var(--font-interface);
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.offers-contact-cta > p {
+  max-width: 600px;
+  margin: 18px 0 0;
+  color: #d3e2f5;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.offers-contact-cta > .offers-button {
+  margin-top: 30px;
+}
+
+.offers-contact-cta__socials {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.offers-contact-cta__socials a {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid rgb(253 253 255 / 28%);
+  border-radius: 10px;
+  color: #d3e2f5;
+  transition: border-color 180ms ease, color 180ms ease,
+    background-color 180ms ease;
+}
+
+.offers-contact-cta__socials a:hover {
+  border-color: rgb(253 253 255 / 60%);
+  background-color: rgb(253 253 255 / 9%);
+  color: var(--color-white);
+}
+
+.offers-contact-cta__socials svg {
+  width: 19px;
+  height: 19px;
+}
+
+@media (max-width: 900px) {
+  .offers-services__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .offers-hero {
+    min-height: 500px;
+    padding: 32px 22px 56px;
+  }
+
+  .offers-hero h1 {
+    font-size: 40px;
+  }
+
+  .offers-hero__content > p {
+    margin-top: 18px;
+    font-size: 17px;
+  }
+
+  .offers-hero__actions {
+    gap: 8px 18px;
+    margin-top: 30px;
+  }
+
+  .offers-section__inner {
+    padding: 64px 20px;
+  }
+
+  .offers-section__header {
+    margin-bottom: 32px;
+  }
+
+  .offers-section__header h2 {
+    font-size: 30px;
+  }
+
+  .offers-services__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .offers-service {
+    min-height: auto;
+    padding: 24px;
+  }
+
+  .offers-service h3 {
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+  .offers-projects__list {
+    gap: 24px;
+  }
+
+  .offers-project {
+    border-radius: 12px;
+  }
+
+  .offers-project__content {
+    padding: 22px 20px 24px;
+  }
+
+  .offers-project__content h3 {
+    font-size: 24px;
+  }
+
+  .offers-project__content p {
+    font-size: 15px;
+  }
+
+  .offers-faq__inner {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .offers-faq__list {
+    gap: 12px;
+  }
+
+  .offers-faq__question {
+    min-height: 68px;
+    padding: 16px 18px;
+    font-size: 17px;
+  }
+
+  .offers-faq__answer {
+    padding: 0 18px 20px;
+  }
+
+  .offers-faq__answer p {
+    font-size: 15px;
+  }
+
+  .offers-profile__card {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 24px;
+  }
+
+  .offers-profile__photo {
+    width: min(100%, 340px);
+    margin: 0 auto;
+  }
+
+  .offers-profile__content h2 {
+    font-size: 30px;
+  }
+
+  .offers-profile__description {
+    margin-top: 18px;
+    font-size: 15px;
+  }
+
+  .offers-contact-cta {
+    min-height: 420px;
+    padding: 72px 22px;
+  }
+
+  .offers-contact-cta h2 {
+    font-size: 34px;
+  }
+
+  .offers-contact-cta > p {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .offers-button,
+  .offers-project__content a,
+  .offers-faq__question svg,
+  .offers-contact-cta__socials a {
+    transition: none;
+  }
+}
