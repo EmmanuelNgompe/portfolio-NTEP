@@ -1,40 +1,44 @@
+import fond from '../images/fond.jpg';
+import ICONAWD from '../images/ICONAWD.png';
+import billet from '../images/billet.png';
+
 const PROJECTS = [
     {
-        title: 'Aurora Horology',
+        title: 'Billet de Mariage Numerique',
         description:
-            "Plateforme e-commerce haut de gamme d'horlogerie avec navigation cinématique et encaissement sécurisé.",
-        technologies: ['Next.js', 'Shopify', 'Tailwind CSS', 'Three.js', 'Stripe'],
-        image: null,
-        imageAlt: 'Aperçu du projet Aurora Horology',
-        url: 'https://example.com/aurora-horology',
+            "Site vitrine pour convier ces amie, connaissance etc... a son mariage et les tenir informes.",
+        technologies: ['React.js','Node.js', 'Vercel'],
+        image: billet,
+        imageAlt: 'Aperçu du Billet',
+        url: 'https://billet-mariagedave.vercel.app/',
     },
     {
-        title: 'Aura Studio',
+        title: 'Test Fonctionnel et Realisation de Maquette Mobile',
         description:
-            "Site vitrine immersif pour une agence d'architecture contemporaine aux transitions fluides.",
-        technologies: ['React', 'WebGL', 'Tailwind CSS', 'TypeScript'],
-        image: null,
-        imageAlt: 'Aperçu du projet Aura Studio',
-        url: 'https://example.com/aura-studio',
+            "Site vitrine immersif pour une solution de paiement numerique en Afrique",
+        technologies: ['React', 'Postman', 'Tailwind CSS', 'Figma'],
+        image: ICONAWD,
+        imageAlt: 'Aperçu du site AWDPAY',
+        url: 'https://awdpay.com',
     },
     {
-        title: 'Aethel Analytics',
+        title: 'Application web de getion de colis (Projet BTS)',
         description:
-            "Tableau de bord financier en temps réel et visualisations interactives d'analyses prédictives.",
-        technologies: ['React', 'Vue 3', 'Tailwind CSS', 'Docker'],
-        image: null,
-        imageAlt: 'Aperçu du projet Aethel Analytics',
-        url: 'https://example.com/aethel-analytics',
+            "Tableau de bord en temps réel, securite des colis via OTP, historique et gestion d'etat. --> voir les images sur mon Github",
+        technologies: ['React.js', 'Laravel', 'UML', 'Figma', 'SQL'],
+        image: fond,
+        imageAlt: 'Aperçu du projet',
+        url: 'https://github.com/emmanuelngompe/boxify',
     },
-    {
-        title: 'VitalFin',
-        description:
-            'Application mobile combinant pilotage budgétaire personnel et indicateurs bien-être quotidiens.',
-        technologies: ['Flutter', 'Dart', 'Firebase', 'Node.js'],
-        image: null,
-        imageAlt: 'Aperçu du projet VitalFin',
-        url: 'https://example.com/vitalfin',
-    },
+    // {
+    //     title: 'VitalFin',
+    //     description:
+    //         'Application mobile combinant pilotage budgétaire personnel et indicateurs bien-être quotidiens.',
+    //     technologies: ['Flutter', 'Dart', 'Firebase', 'Node.js'],
+    //     image: null,
+    //     imageAlt: 'Aperçu du projet VitalFin',
+    //     url: 'https://example.com/vitalfin',
+    // },
 ];
 
 export default PROJECTS;

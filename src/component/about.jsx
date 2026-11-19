@@ -2,12 +2,12 @@ import '../style/about.css';
 
 const ABOUT_CONTENT = {
     photo: '/emmanuel.jpg',
-    photoAlt: 'Emmanuel, développeur web et designer d’interface',
+    photoAlt: 'Emmanuel, web develloper and designer interface',
     cvHref: '/cv-emmanuel-ngompe.pdf',
-    cvLabel: 'Voir mon CV',
+    cvLabel: '→ See my CV',
     profileHeading: 'Profil',
     biography:
-        'Emmanuel est un développeur web et designer d’interface enthousiaste, animé par la clarté et le soin des interactions. Lorsqu’il quitte le clavier, il se plonge dans la lecture, découvre le cinéma, joue du piano et sert comme chantre à l’église.',
+        'Développeur web junior avec quelque mois d’expérience et des projets solo, je suis titulaire d\'un BTS en génie logiciel et actuellement étudiant en IGL3 à ISSAM. Passionnée par la programmation web et les défis techniques, je m\'investis pleinement dans le travail en équipe. Mon expertise inclut le développement web, la gestion de projet et la résolution de problèmes complexes.',
     contactsHeading: 'Contacts',
     contactInvitation:
         'Pour une collaboration, un projet ou simplement échanger, contactez-moi.',
@@ -101,7 +101,7 @@ function About() {
     return (
         <main className="about-page page-enter">
             <div className="about-page__content">
-            <figure className="about-photo" data-reveal>
+                <figure className="about-photo" data-reveal>
                     <img src={ABOUT_CONTENT.photo} alt={ABOUT_CONTENT.photoAlt} />
                     <a className="about-photo__cv" href={ABOUT_CONTENT.cvHref}>
                         <svg

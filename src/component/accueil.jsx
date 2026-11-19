@@ -1,18 +1,19 @@
 import { Link } from 'react-router-dom';
 import '../style/accueil.css';
+// import About from './about.jsx';
 
 const HOME_CONTENT = {
-    title: 'you can call me Godson',
-    subtitle: 'Développeur web & designer d’interface',
+    title: 'Hey, I\'m Emmanuel NGOMPE but you can call me Godson',
+    subtitle: 'I\'m a web Develloper fullstack. UX/UI designer interface',
     navigationLabel: 'Liens vers mes projets et contacts',
     links: {
-        projects: 'Voir mes projets',
+        projects: 'See my projects',
         projectsHref: '/project',
         arrow: ' →',
-        whatsapp: 'Écrire sur WhatsApp',
-        whatsappHref: 'https://wa.me/237658476252?text=Bonjour%20Emmanuel',
+        about: 'More about me',
+        aboutHref: '/about',
         cv: 'Mon CV',
-        cvHref: '/CV-Emma.pdf',
+        cvHref: '/cv-emmanuel-ngompe.pdf',
     },
 };
 
@@ -26,16 +27,17 @@ function Accueil() {
                 <p className="home-hero__subtitle">{HOME_CONTENT.subtitle}</p>
                 <nav className="home-hero__links" aria-label={HOME_CONTENT.navigationLabel}>
                     <Link className="home-hero__link" to={HOME_CONTENT.links.projectsHref}>
+                        {HOME_CONTENT.links.arrow}
                         {HOME_CONTENT.links.projects}
                         <span aria-hidden="true">{HOME_CONTENT.links.arrow}</span>
                     </Link>
                     <a
                         className="home-hero__link"
-                        href={HOME_CONTENT.links.whatsappHref}
+                        href={HOME_CONTENT.links.aboutHref}
                         target="_blank"
                         rel="noreferrer"
                     >
-                        {HOME_CONTENT.links.whatsapp}
+                        {HOME_CONTENT.links.about}
                         <span aria-hidden="true">{HOME_CONTENT.links.arrow}</span>
                     </a>
                     <a className="home-hero__link home-hero__link--cv" href={HOME_CONTENT.links.cvHref}>
