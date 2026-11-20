@@ -1,4 +1,5 @@
 import '../style/about.css';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const ABOUT_CONTENT = {
     photo: '/emmanuel.jpg',
@@ -98,11 +99,23 @@ function ContactIcon({ name }) {
 }
 
 function About() {
+    const { t, language } = useLanguage();
+    const whatsappHref = `https://wa.me/237658476252?text=${encodeURIComponent(
+        language === 'fr'
+            ? 'Bonjour Emmanuel, j’aimerais discuter de mon projet.'
+            : 'Hello Emmanuel, I would like to discuss my project.'
+    )}`;
     return (
         <main className="about-page page-enter">
             <div className="about-page__content">
                 <figure className="about-photo" data-reveal>
-                    <img src={ABOUT_CONTENT.photo} alt={ABOUT_CONTENT.photoAlt} />
+                    <img
+                        src={ABOUT_CONTENT.photo}
+                        alt={t('about.photoAlt')}
+                        width="960"
+                        height="1280"
+                        loading="lazy"
+                    />
                     <a className="about-photo__cv" href={ABOUT_CONTENT.cvHref}>
                         <svg
                             aria-hidden="true"
@@ -124,7 +137,7 @@ function About() {
                                 strokeLinejoin="round"
                             />
                         </svg>
-                        {ABOUT_CONTENT.cvLabel}
+                        {t('about.cvLabel')}
                         <span aria-hidden="true">→</span>
                     </a>
                 </figure>
@@ -134,8 +147,8 @@ function About() {
                     aria-labelledby="about-profile-heading"
                     data-reveal
                 >
-                    <h1 id="about-profile-heading">{ABOUT_CONTENT.profileHeading}</h1>
-                    <p>{ABOUT_CONTENT.biography}</p>
+                    <h1 id="about-profile-heading">{t('about.profileHeading')}</h1>
+                    <p>{t('about.biography')}</p>
                 </section>
 
                 <section
@@ -143,19 +156,19 @@ function About() {
                     aria-labelledby="about-contacts-heading"
                     data-reveal
                 >
-                    <h2 id="about-contacts-heading">{ABOUT_CONTENT.contactsHeading}</h2>
-                    <p>{ABOUT_CONTENT.contactInvitation}</p>
+                    <h2 id="about-contacts-heading">{t('about.contactsHeading')}</h2>
+                    <p>{t('about.invitation')}</p>
                     <ul className="about-contact-list">
                         {ABOUT_CONTENT.contacts.map((contact) => (
                             <li key={contact.id}>
                                 <a
                                     className="about-contact"
-                                    href={contact.href}
+                                    href={contact.id === 'whatsapp' ? whatsappHref : contact.href}
                                     target={contact.external ? '_blank' : undefined}
                                     rel={contact.external ? 'noopener noreferrer' : undefined}
                                 >
                                     <ContactIcon name={contact.icon} />
-                                    <span>{contact.label}</span>
+                                    <span>{t(`about.${contact.id}`)}</span>
                                 </a>
                             </li>
                         ))}

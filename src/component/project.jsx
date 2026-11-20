@@ -1,30 +1,35 @@
 import '../style/project.css';
 import PROJECTS from '../data/projects';
+import { useLanguage } from '../i18n/LanguageContext';
 
 function Project() {
+    const { t } = useLanguage();
     return (
         <main className="projects-page page-enter">
-            <h1 className="projects-page__title">Projets</h1>
+            <h1 className="projects-page__title">{t('project.title')}</h1>
             <div className="projects-list">
                 {PROJECTS.map((project) => (
-                    <article className="project-card" key={project.title} data-reveal>
+                    <article className="project-card" key={project.titleKey} data-reveal>
                         {project.image ? (
                             <img
                                 className="project-card__image"
                                 src={project.image}
-                                alt={project.imageAlt}
+                                alt={t(project.imageAltKey)}
+                                width={project.imageWidth}
+                                height={project.imageHeight}
+                                loading="lazy"
                             />
                         ) : (
                             <div
                                 className="project-card__image-placeholder"
                                 role="img"
-                                aria-label={project.imageAlt}
+                                aria-label={t(project.imageAltKey)}
                             />
                         )}
                         <div className="project-card__content">
-                            <h2 className="project-card__title">{project.title}</h2>
-                            <p className="project-card__description">{project.description}</p>
-                            <ul className="project-card__technologies" aria-label="Technologies">
+                            <h2 className="project-card__title">{t(project.titleKey)}</h2>
+                            <p className="project-card__description">{t(project.descriptionKey)}</p>
+                            <ul className="project-card__technologies" aria-label={t('project.technologyLabel')}>
                                 {project.technologies.map((technology) => (
                                     <li className="project-card__technology" key={technology}>
                                         {technology}
@@ -36,9 +41,9 @@ function Project() {
                                 href={project.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                aria-label={`Voir le projet ${project.title} (nouvel onglet)`}
+                                aria-label={`${t('project.view')} ${t(project.titleKey)} (${t('project.newTab')})`}
                             >
-                                Voir le projet <span aria-hidden="true">→</span>
+                                {t('project.view')} <span aria-hidden="true">→</span>
                             </a>
                         </div>
                     </article>

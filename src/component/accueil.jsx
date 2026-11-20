@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import '../style/accueil.css';
-// import About from './about.jsx';
+import { useLanguage } from '../i18n/LanguageContext';
+import HeroBackground from './HeroBackground';
 
 const HOME_CONTENT = {
     title: 'Hey, I\'m Emmanuel NGOMPE but you can call me Godson',
@@ -18,18 +19,21 @@ const HOME_CONTENT = {
 };
 
 function Accueil() {
+    const { t } = useLanguage();
+
     return (
         <main className="home-page page-enter">
+            <HeroBackground />
             <section className="home-hero" aria-labelledby="home-title" data-reveal>
                 <h1 className="home-hero__title" id="home-title">
-                    {HOME_CONTENT.title}
+                    {t('home.title')}
                 </h1>
-                <p className="home-hero__subtitle">{HOME_CONTENT.subtitle}</p>
-                <nav className="home-hero__links" aria-label={HOME_CONTENT.navigationLabel}>
+                <p className="home-hero__subtitle">{t('home.subtitle')}</p>
+                <nav className="home-hero__links" aria-label={t('home.navigationLabel')}>
                     <Link className="home-hero__link" to={HOME_CONTENT.links.projectsHref}>
-                        {HOME_CONTENT.links.arrow}
-                        {HOME_CONTENT.links.projects}
-                        <span aria-hidden="true">{HOME_CONTENT.links.arrow}</span>
+                        {t('home.arrow')}
+                        {t('home.projects')}
+                        <span aria-hidden="true">{t('home.arrow')}</span>
                     </Link>
                     <a
                         className="home-hero__link"
@@ -37,8 +41,8 @@ function Accueil() {
                         target="_blank"
                         rel="noreferrer"
                     >
-                        {HOME_CONTENT.links.about}
-                        <span aria-hidden="true">{HOME_CONTENT.links.arrow}</span>
+                        {t('home.about')}
+                        <span aria-hidden="true">{t('home.arrow')}</span>
                     </a>
                     <a className="home-hero__link home-hero__link--cv" href={HOME_CONTENT.links.cvHref}>
                         <svg
@@ -61,7 +65,7 @@ function Accueil() {
                                 strokeLinejoin="round"
                             />
                         </svg>
-                        {HOME_CONTENT.links.cv}
+                        {t('home.cv')}
                     </a>
                 </nav>
             </section>

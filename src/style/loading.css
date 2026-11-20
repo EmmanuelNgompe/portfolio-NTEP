@@ -4,13 +4,7 @@
   inset: 0;
   display: grid;
   place-items: center;
-  background: radial-gradient(
-    ellipse at center,
-    #1765b8 0%,
-    #0c4684 30%,
-    #041a35 62%,
-    #02050b 100%
-  );
+  background: var(--loading-background);
   opacity: 1;
   transition: opacity 600ms ease;
 }
@@ -25,7 +19,7 @@
   width: min(72vw, 720px);
   max-height: 40vh;
   object-fit: contain;
-  filter: drop-shadow(0 12px 28px rgb(0 13 34 / 35%));
+  filter: drop-shadow(var(--logo-shadow));
   animation: loading-logo-appear 700ms ease-out both;
 }
 

@@ -1,22 +1,100 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400&family=Space+Grotesk:wght@400&display=swap');
 
 :root {
-  --color-blue: #00457c;
-  --color-white: #fdfdff;
-  --color-slate: #3e4b5e;
-  --color-gray: #878e98;
-  --color-gray-light: #aeb5bc;
-  /* --color-background: #030712; */
-  --color-background: #0b2059;
-  --color-accent: #0a78d1;
+  color-scheme: light;
+  --bg: #f3f6fa;
+  --surface: #ffffff;
+  --surface-2: #e5ebf1;
+  --primary: #086fb8;
+  --primary-deep: #0b2341;
+  --silver: #929da9;
+  --text: #101a2b;
+  --text-2: #5f6b7a;
+  --border: #d5dde6;
+  --surface-rgb: 255 255 255;
+  --bg-rgb: 243 246 250;
+  --text-rgb: 16 26 43;
+  --border-rgb: 213 221 230;
+  --primary-rgb: 8 111 184;
+  --primary-contrast: #ffffff;
+  --primary-hover: #05588e;
+  --link-primary: #086fb8;
+  --link-hover: #0b2341;
+  --focus-ring: #086fb8;
+  --card-background: #ffffff;
+  --card-hover: #f8fafc;
+  --menu-background: radial-gradient(circle at 50% 45%, rgb(8 111 184 / 18%) 0%, #e5ebf1 35%, #f3f6fa 78%);
+  --loading-background: radial-gradient(ellipse at center, #d7e9f8 0%, #e9f1f8 42%, #f3f6fa 100%);
+  --image-placeholder: linear-gradient(145deg, #e5ebf1 0%, #f3f6fa 58%, #dce5ee 100%);
+  --photo-overlay: linear-gradient(transparent, rgb(11 35 65 / 82%));
+  --photo-button-background: #0b2341;
+  --photo-button-text: #ffffff;
+  --photo-shadow: 0 28px 76px rgb(8 48 93 / 22%);
+  --cta-background: radial-gradient(ellipse at 50% 42%, #6bb2e4 0%, #d4e5f3 44%, #f3f6fa 100%);
+  --cta-text: #253b53;
+  --shadow-color: 8 48 93;
+  --logo-shadow: 0 12px 28px rgb(8 48 93 / 20%);
+  --color-blue: var(--primary-deep);
+  --color-white: var(--text);
+  --color-slate: var(--primary-deep);
+  --color-gray: var(--text-2);
+  --color-gray-light: var(--text-2);
+  --color-background: var(--bg);
+  --color-accent: var(--primary);
   --font-body: 'Outfit', sans-serif;
   --font-interface: 'Space Grotesk', sans-serif;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #030712;
+  --surface: #0a1120;
+  --surface-2: #141e2e;
+  --primary: #0a78d1;
+  --primary-deep: #00457c;
+  --silver: #878e98;
+  --text: #fdfdff;
+  --text-2: #aeb5bc;
+  --border: #304052;
+  --surface-rgb: 10 17 32;
+  --bg-rgb: 3 7 18;
+  --text-rgb: 253 253 255;
+  --border-rgb: 48 64 82;
+  --primary-rgb: 10 120 209;
+  --primary-contrast: #ffffff;
+  --primary-hover: #0067b6;
+  --link-primary: #55b4ff;
+  --link-hover: #b5dcff;
+  --focus-ring: #55b4ff;
+  --card-background: #0a1120;
+  --card-hover: #0d1829;
+  --menu-background: radial-gradient(circle at 50% 45%, rgb(10 120 209 / 38%) 0%, #08284b 35%, #030712 78%);
+  --loading-background: radial-gradient(ellipse at center, #1765b8 0%, #0c4684 30%, #041a35 62%, #02050b 100%);
+  --image-placeholder: linear-gradient(145deg, #091323 0%, #050a14 58%, #07101f 100%);
+  --photo-overlay: linear-gradient(transparent, rgb(3 7 18 / 88%));
+  --photo-button-background: #030712;
+  --photo-button-text: #ffffff;
+  --photo-shadow: 0 28px 76px rgb(0 53 187 / 42%);
+  --cta-background: radial-gradient(ellipse at 50% 42%, #0879dc 0%, #074b99 35%, #06254e 64%, #030712 100%);
+  --cta-text: #d3e2f5;
+  --shadow-color: 0 13 34;
+  --logo-shadow: 0 12px 28px rgb(0 13 34 / 35%);
+  --color-blue: var(--primary-deep);
+  --color-white: var(--text);
+  --color-slate: #3e4b5e;
+  --color-gray: var(--text-2);
+  --color-gray-light: #aeb5bc;
+  --color-background: var(--bg);
+  --color-accent: var(--primary);
+  /* Kept from the previous dark-canvas preference. */
+  /* --color-background: #0b2059; */
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+  transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease;
 }
 
 html {
@@ -26,8 +104,8 @@ html {
 body {
   min-width: 320px;
   margin: 0;
-  background-color: var(--color-background);
-  color: var(--color-white);
+  background-color: var(--bg);
+  color: var(--text);
   font-family: var(--font-body);
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -42,7 +120,7 @@ select {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid #55b4ff;
+  outline: 2px solid var(--focus-ring);
   outline-offset: 4px;
 }
 
@@ -62,6 +140,14 @@ button:focus-visible {
 
 .page-enter {
   animation: page-enter 280ms ease-out both;
+}
+
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition: background-color 300ms ease, color 300ms ease,
+    border-color 300ms ease, filter 300ms ease !important;
 }
 
 @keyframes page-enter {
@@ -91,5 +177,18 @@ button:focus-visible {
 
   .page-enter {
     animation: none;
+  }
+
+  html.theme-transitioning,
+  html.theme-transitioning *,
+  html.theme-transitioning *::before,
+  html.theme-transitioning *::after {
+    transition: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0s !important;
   }
 }

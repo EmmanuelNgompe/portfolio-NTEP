@@ -1,13 +1,147 @@
 main.home-page {
+	position: relative;
 	display: grid;
-	min-height: 100svh;
+	min-height: 100vh;
+	min-height: 100dvh;
 	place-items: center;
 	padding: 32px 24px;
 	text-align: center;
+	isolation: isolate;
+	overflow: hidden;
+}
+
+.hero-background {
+	position: absolute;
+	z-index: 0;
+	inset: 0;
+	overflow: hidden;
+	background-color: var(--bg);
+	pointer-events: none;
+}
+
+.hero-background__orbs,
+.hero-background__canvas {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	transition: opacity 900ms ease;
+}
+
+.hero-background__orbs {
+	opacity: 0;
+}
+
+.hero-background__canvas {
+	display: block;
+	opacity: 0;
+}
+
+.hero-background--dark .hero-background__orbs {
+	opacity: 1;
+}
+
+.hero-background--light {
+	background: linear-gradient(135deg, var(--bg) 0%, var(--surface) 100%);
+}
+
+.hero-background--light .hero-background__canvas {
+	opacity: 1;
+}
+
+.hero-background__orb {
+	position: absolute;
+	width: min(46vw, 560px);
+	 aspect-ratio: 1;
+	border-radius: 50%;
+	filter: blur(58px);
+	will-change: transform, opacity;
+}
+
+.hero-background__orb--one {
+	top: -18%;
+	left: -12%;
+	background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+	opacity: 0.28;
+	animation: hero-orb-one 32s ease-in-out infinite;
+}
+
+.hero-background__orb--two {
+	top: 4%;
+	right: -14%;
+	background: radial-gradient(circle, var(--primary-deep) 0%, transparent 72%);
+	opacity: 0.24;
+	animation: hero-orb-two 36s ease-in-out infinite;
+}
+
+.hero-background__orb--three {
+	bottom: -38%;
+	left: 8%;
+	background: radial-gradient(circle, var(--color-slate) 0%, transparent 72%);
+	opacity: 0.18;
+	animation: hero-orb-three 29s ease-in-out infinite;
+}
+
+.hero-background__orb--four {
+	right: 14%;
+	bottom: -30%;
+	background: radial-gradient(circle, var(--primary) 0%, transparent 72%);
+	opacity: 0.2;
+	animation: hero-orb-four 38s ease-in-out infinite;
+}
+
+.hero-background__orb--five {
+	top: 30%;
+	left: 38%;
+	width: min(34vw, 420px);
+	background: radial-gradient(circle, var(--primary-deep) 0%, transparent 72%);
+	opacity: 0.16;
+	animation: hero-orb-five 34s ease-in-out infinite;
+}
+
+.hero-background__orb--six {
+	top: -22%;
+	right: 30%;
+	width: min(28vw, 340px);
+	background: radial-gradient(circle, var(--color-slate) 0%, transparent 72%);
+	opacity: 0.15;
+	animation: hero-orb-six 27s ease-in-out infinite;
 }
 
 .home-hero {
+	position: relative;
+	z-index: 1;
 	width: min(100%, 960px);
+}
+
+@keyframes hero-orb-one {
+	0%, 100% { transform: translate3d(0, 0, 0) scale(0.94); opacity: 0.24; }
+	50% { transform: translate3d(12%, 8%, 0) scale(1.08); opacity: 0.3; }
+}
+
+@keyframes hero-orb-two {
+	0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.2; }
+	50% { transform: translate3d(-12%, 10%, 0) scale(0.9); opacity: 0.27; }
+}
+
+@keyframes hero-orb-three {
+	0%, 100% { transform: translate3d(0, 0, 0) scale(0.92); opacity: 0.15; }
+	50% { transform: translate3d(16%, -12%, 0) scale(1.08); opacity: 0.2; }
+}
+
+@keyframes hero-orb-four {
+	0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); opacity: 0.17; }
+	50% { transform: translate3d(-14%, -10%, 0) scale(0.9); opacity: 0.23; }
+}
+
+@keyframes hero-orb-five {
+	0%, 100% { transform: translate3d(-4%, 0, 0) scale(0.95); opacity: 0.14; }
+	50% { transform: translate3d(8%, 12%, 0) scale(1.1); opacity: 0.2; }
+}
+
+@keyframes hero-orb-six {
+	0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.13; }
+	50% { transform: translate3d(-10%, 12%, 0) scale(0.9); opacity: 0.19; }
 }
 
 .home-hero__title {
@@ -44,7 +178,7 @@ main.home-page {
 	min-height: 44px;
 	align-items: center;
 	gap: 8px;
-	color: #55b4ff;
+	color: var(--link-primary);
 	font-family: var(--font-interface);
 	font-size: 18px;
 	font-weight: 400;
@@ -53,7 +187,7 @@ main.home-page {
 }
 
 .home-hero__link:hover {
-	color: #b5dcff;
+	color: var(--link-hover);
 	transform: translateY(-2px);
 }
 
@@ -82,6 +216,11 @@ main.home-page {
 }
 
 @media (max-width: 700px) {
+	.hero-background__orb {
+		width: min(72vw, 360px);
+		filter: blur(42px);
+	}
+
 	.home-hero__title {
 		font-size: 44px;
 	}
@@ -109,6 +248,11 @@ main.home-page {
 }
 
 @media (prefers-reduced-motion: reduce) {
+	.hero-background__orb {
+		animation: none;
+		will-change: auto;
+	}
+
 	.home-hero__title,
 	.home-hero__subtitle,
 	.home-hero__links {

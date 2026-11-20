@@ -15,16 +15,16 @@
   aspect-ratio: 3 / 4;
   margin: 24px auto 0;
   overflow: hidden;
-  border: 1px solid rgb(253 253 255 / 12%);
+  border: 1px solid rgb(var(--text-rgb) / 12%);
   border-radius: 22px;
-  background-color: #07101f;
-  box-shadow: 0 28px 76px rgb(0 53 187 / 42%);
+  background-color: var(--surface-2);
+  box-shadow: var(--photo-shadow);
 }
 
 .about-photo::after {
   position: absolute;
   inset: 45% 0 0;
-  background: linear-gradient(transparent, rgb(3 7 18 / 88%));
+  background: var(--photo-overlay);
   content: '';
   pointer-events: none;
 }
@@ -48,10 +48,10 @@
   gap: 9px;
   padding: 0 18px;
   transform: translateX(50%);
-  border: 1px solid rgb(253 253 255 / 25%);
+  border: 1px solid rgb(var(--text-rgb) / 25%);
   border-radius: 999px;
-  background-color: rgb(3 7 18 / 86%);
-  color: var(--color-white);
+  background-color: var(--photo-button-background);
+  color: var(--photo-button-text);
   font-family: var(--font-interface);
   font-size: 15px;
   text-decoration: none;
@@ -61,18 +61,18 @@
 
 .about-photo__cv:hover {
   border-color: var(--color-accent);
-  background-color: #071526;
+  background-color: var(--surface-2);
 }
 
 .about-photo__cv-icon {
   width: 17px;
   height: 17px;
-  color: #55b4ff;
+  color: var(--link-primary);
 }
 
 .about-photo__cv:focus-visible,
 .about-contact:focus-visible {
-  outline: 2px solid #55b4ff;
+  outline: 2px solid var(--focus-ring);
   outline-offset: 5px;
 }
 
@@ -123,7 +123,7 @@
   min-height: 44px;
   align-items: center;
   gap: 9px;
-  color: #c3d0df;
+  color: var(--text-2);
   font-family: var(--font-interface);
   font-size: 15px;
   text-decoration: none;
@@ -131,14 +131,14 @@
 }
 
 .about-contact:hover {
-  color: #62b5ff;
+  color: var(--link-hover);
 }
 
 .about-contact__icon {
   width: 18px;
   height: 18px;
   flex: 0 0 auto;
-  color: #55b4ff;
+  color: var(--link-primary);
 }
 
 @media (max-width: 600px) {

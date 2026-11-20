@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PROJECTS from '../data/projects';
 import '../style/offres.css';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const OFFERS_CONTENT = {
     heroTitle: 'Je conçois et développe des expériences web soignées.',
@@ -19,30 +20,9 @@ const OFFERS_CONTENT = {
     faqHeading: 'Questions fréquentes',
     faqIntro: 'Des réponses transparentes et bienveillantes pour démarrer notre collaboration sereinement.',
     faqs: [
-        {
-            id: 'budget',
-            question: "Je n'ai pas assez d'argent",
-            answer: [
-                'Nous pouvons commencer avec une solution adaptée à votre budget.',
-                'Nous définissons ensemble les priorités et faisons évoluer le projet par étapes.',
-            ],
-        },
-        {
-            id: 'profitability',
-            question: 'Est-ce vraiment rentable ?',
-            answer: [
-                'Un site bien pensé peut vous aider à gagner en visibilité et en crédibilité.',
-                'Nous concevons une expérience utile à vos clients et alignée sur vos objectifs.',
-            ],
-        },
-        {
-            id: 'support',
-            question: 'Serez-vous accompagné ?',
-            answer: [
-                'Je reste à vos côtés de la première discussion jusqu’à la mise en ligne.',
-                'Vous gardez un contact direct pour les ajustements et les conseils.',
-            ],
-        },
+        { id: 'budget' },
+        { id: 'profitability' },
+        { id: 'support' },
     ],
     profileHeading: 'Emmanuel NGOMPE',
     profileLogo: '/logo-ntep.png',
@@ -62,19 +42,19 @@ const OFFERS_CONTENT = {
     ],
     services: [
         {
-            title: 'Création de site',
+            titleKey: 'Website',
             description:
                 'Développement de plateformes web rapides, accessibles et optimisées pour le référencement naturel. Architectures modernes et responsives adaptées à tous les écrans.',
             icon: 'site',
         },
         {
-            title: "Design d'interface / UI-UX",
+            titleKey: 'Ui',
             description:
                 "Conception d'identités visuelles distinctives et de parcours intuitifs. Prototypage soigné, micro-interactions harmonieuses et systèmes graphiques évolutifs.",
             icon: 'design',
         },
         {
-            title: 'E-commerce & Web apps',
+            titleKey: 'Commerce',
             description:
                 "Boutiques en ligne élégantes orientées conversion et applications sur-mesure. Parcours d'achat simplifiés, synchronisation fluide et chargement instantané.",
             icon: 'commerce',
@@ -178,27 +158,33 @@ function SocialIcon({ name }) {
 }
 
 function Offres() {
+    const { t, language } = useLanguage();
     const [openFaqId, setOpenFaqId] = useState(null);
+    const whatsappHref = `https://wa.me/237658476252?text=${encodeURIComponent(
+        language === 'fr'
+            ? 'Bonjour Emmanuel, j’aimerais discuter de mon projet web.'
+            : 'Hello Emmanuel, I would like to discuss my web project.'
+    )}`;
 
     return (
         <main className="offers-page page-enter">
             <section className="offers-hero" aria-labelledby="offers-title" data-reveal>
                 <div className="offers-hero__content">
-                    <h1 id="offers-title">{OFFERS_CONTENT.heroTitle}</h1>
-                    <p>{OFFERS_CONTENT.heroSubtitle}</p>
+                    <h1 id="offers-title">{t('offers.heroTitle')}</h1>
+                    <p>{t('offers.heroSubtitle')}</p>
                     <div className="offers-hero__actions">
                         <a
                             className="offers-button offers-button--primary"
-                            href={OFFERS_CONTENT.whatsappHref}
+                            href={whatsappHref}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
                             <WhatsAppIcon />
-                            {OFFERS_CONTENT.whatsappLabel}
+                            {t('offers.whatsapp')}
                         </a>
                         <Link className="offers-button offers-button--secondary" to="/project">
                             <span aria-hidden="true">→</span>
-                            {OFFERS_CONTENT.projectsLabel}
+                            {t('offers.projects')}
                         </Link>
                     </div>
                 </div>
@@ -211,17 +197,17 @@ function Offres() {
             >
                 <div className="offers-section__inner">
                     <header className="offers-section__header">
-                        <h2 id="services-title">{OFFERS_CONTENT.servicesHeading}</h2>
-                        <p>{OFFERS_CONTENT.servicesIntro}</p>
+                        <h2 id="services-title">{t('offers.servicesHeading')}</h2>
+                        <p>{t('offers.servicesIntro')}</p>
                     </header>
                     <div className="offers-services__grid">
                         {OFFERS_CONTENT.services.map((service) => (
-                            <article className="offers-service" key={service.title} data-reveal>
+                            <article className="offers-service" key={service.titleKey} data-reveal>
                                 <div className="offers-service__icon-box">
                                     <ServiceIcon name={service.icon} />
                                 </div>
-                                <h3>{service.title}</h3>
-                                <p>{service.description}</p>
+                                <h3>{t(`offers.service${service.titleKey}.title`)}</h3>
+                                <p>{t(`offers.service${service.titleKey}.description`)}</p>
                             </article>
                         ))}
                     </div>
@@ -235,35 +221,38 @@ function Offres() {
             >
                 <div className="offers-section__inner">
                     <header className="offers-section__header">
-                        <h2 id="projects-title">{OFFERS_CONTENT.projectsHeading}</h2>
-                        <p>{OFFERS_CONTENT.projectsIntro}</p>
+                        <h2 id="projects-title">{t('offers.projectsHeading')}</h2>
+                        <p>{t('offers.projectsIntro')}</p>
                     </header>
                     <div className="offers-projects__list">
                         {PROJECTS.map((project) => (
-                            <article className="offers-project" key={project.title} data-reveal>
+                            <article className="offers-project" key={project.titleKey} data-reveal>
                                 {project.image ? (
                                     <img
                                         className="offers-project__image"
                                         src={project.image}
-                                        alt={project.imageAlt}
+                                        alt={t(project.imageAltKey)}
+                                        width={project.imageWidth}
+                                        height={project.imageHeight}
+                                        loading="lazy"
                                     />
                                 ) : (
                                     <div
                                         className="offers-project__placeholder"
                                         role="img"
-                                        aria-label={project.imageAlt}
+                                        aria-label={t(project.imageAltKey)}
                                     />
                                 )}
                                 <div className="offers-project__content">
-                                    <h3>{project.title}</h3>
-                                    <p>{project.description}</p>
+                                    <h3>{t(project.titleKey)}</h3>
+                                    <p>{t(project.descriptionKey)}</p>
                                     <a
                                         href={project.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        aria-label={`Voir le projet ${project.title} (nouvel onglet)`}
+                                        aria-label={`${t('project.view')} ${t(project.titleKey)} (${t('project.newTab')})`}
                                     >
-                                        Voir le projet <span aria-hidden="true">→</span>
+                                        {t('project.view')} <span aria-hidden="true">→</span>
                                     </a>
                                 </div>
                             </article>
@@ -279,8 +268,8 @@ function Offres() {
             >
                 <div className="offers-section__inner offers-faq__inner">
                     <header className="offers-section__header offers-faq__header">
-                        <h2 id="faq-title">{OFFERS_CONTENT.faqHeading}</h2>
-                        <p>{OFFERS_CONTENT.faqIntro}</p>
+                        <h2 id="faq-title">{t('offers.faqHeading')}</h2>
+                        <p>{t('offers.faqIntro')}</p>
                     </header>
                     <div className="offers-faq__list">
                         {OFFERS_CONTENT.faqs.map((faq) => {
@@ -297,7 +286,7 @@ function Offres() {
                                             aria-controls={answerId}
                                             onClick={() => setOpenFaqId(isOpen ? null : faq.id)}
                                         >
-                                            <span>{faq.question}</span>
+                                            <span>{t(`offers.faq${faq.id === 'budget' ? 'Budget' : faq.id === 'profitability' ? 'Profit' : 'Support'}.question`)}</span>
                                             <svg
                                                 aria-hidden="true"
                                                 className={isOpen ? 'is-open' : ''}
@@ -316,8 +305,10 @@ function Offres() {
                                     </h3>
                                     <div className="offers-faq__answer" id={answerId} hidden={!isOpen}>
                                         <p>
-                                            {faq.answer.map((line) => (
-                                                <span key={line}>{line}</span>
+                                            {['answer1', 'answer2'].map((answerKey) => (
+                                                <span key={answerKey}>
+                                                    {t(`offers.faq${faq.id === 'budget' ? 'Budget' : faq.id === 'profitability' ? 'Profit' : 'Support'}.${answerKey}`)}
+                                                </span>
                                             ))}
                                         </p>
                                     </div>
@@ -337,21 +328,27 @@ function Offres() {
                     <img
                         className="offers-profile__photo"
                         src={OFFERS_CONTENT.profilePhoto}
-                        alt="Emmanuel NGOMPE"
+                        alt={t('offers.profileName')}
+                        width="960"
+                        height="1280"
+                        loading="lazy"
                     />
                     <div className="offers-profile__content">
                         <img
                             className="offers-profile__logo"
                             src={OFFERS_CONTENT.profileLogo}
                             alt="NTEP"
+                            width="1086"
+                            height="362"
+                            loading="lazy"
                         />
-                        <h2 id="profile-title">{OFFERS_CONTENT.profileHeading}</h2>
-                        <p className="offers-profile__role">{OFFERS_CONTENT.profileTitle}</p>
+                        <h2 id="profile-title">{t('offers.profileName')}</h2>
+                        <p className="offers-profile__role">{t('offers.profileTitle')}</p>
                         <p className="offers-profile__description">
-                            {OFFERS_CONTENT.profileDescription}
+                            {t('offers.profileDescription')}
                         </p>
                         <p className="offers-profile__location">
-                            {OFFERS_CONTENT.profileLocation}
+                            {t('offers.profileLocation')}
                         </p>
                     </div>
                 </div>
@@ -362,18 +359,21 @@ function Offres() {
                 aria-labelledby="contact-cta-title"
                 data-reveal
             >
-                <h2 id="contact-cta-title">{OFFERS_CONTENT.contactHeading}</h2>
-                <p>{OFFERS_CONTENT.contactDescription}</p>
+                <h2 id="contact-cta-title">{t('offers.ctaTitle')}</h2>
+                <p>{t('offers.ctaDescription')}</p>
                 <a
                     className="offers-button offers-button--primary"
-                    href={OFFERS_CONTENT.whatsappHref}
+                    href={whatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
                 >
                     <WhatsAppIcon />
-                    {OFFERS_CONTENT.whatsappLabel}
+                    {t('offers.whatsapp')}
                 </a>
-                <nav className="offers-contact-cta__socials" aria-label="Réseaux sociaux">
+                <nav
+                    className="offers-contact-cta__socials"
+                    aria-label={language === 'fr' ? 'Réseaux sociaux' : 'Social networks'}
+                >
                     {OFFERS_CONTENT.socials.map((social) => (
                         <a
                             key={social.name}

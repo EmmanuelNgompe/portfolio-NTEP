@@ -4,41 +4,46 @@ import billet from '../images/billet.png';
 
 const PROJECTS = [
     {
-        title: 'Billet de Mariage Numerique',
-        description:
-            "Site vitrine pour convier ces amie, connaissance etc... a son mariage et les tenir informes.",
+        titleKey: 'project.rhc.title',
+        descriptionKey: 'project.rhc.description',
+        technologies: ['WordPress', 'Hostinger'],
+        image: fond,
+        imageWidth: 1024,
+        imageHeight: 1024,
+        imageAltKey: 'project.rhc.imageAlt',
+        url: 'https://risinghopecommunity.com',
+    },
+    {
+        titleKey: 'project.wedding.title',
+        descriptionKey: 'project.wedding.description',
         technologies: ['React.js','Node.js', 'Vercel'],
         image: billet,
-        imageAlt: 'Aperçu du Billet',
+        imageWidth: 1401,
+        imageHeight: 855,
+        imageAltKey: 'project.wedding.imageAlt',
         url: 'https://billet-mariagedave.vercel.app/',
     },
     {
-        title: 'Test Fonctionnel et Realisation de Maquette Mobile',
-        description:
-            "Site vitrine immersif pour une solution de paiement numerique en Afrique",
+        titleKey: 'project.awdpay.title',
+        descriptionKey: 'project.awdpay.description',
         technologies: ['React', 'Postman', 'Tailwind CSS', 'Figma'],
         image: ICONAWD,
-        imageAlt: 'Aperçu du site AWDPAY',
+        imageWidth: 1000,
+        imageHeight: 1000,
+        imageAltKey: 'project.awdpay.imageAlt',
         url: 'https://awdpay.com',
     },
     {
-        title: 'Application web de getion de colis (Projet BTS)',
-        description:
-            "Tableau de bord en temps réel, securite des colis via OTP, historique et gestion d'etat. --> voir les images sur mon Github",
+        titleKey: 'project.boxify.title',
+        descriptionKey: 'project.boxify.description',
         technologies: ['React.js', 'Laravel', 'UML', 'Figma', 'SQL'],
         image: fond,
-        imageAlt: 'Aperçu du projet',
+        imageWidth: 1024,
+        imageHeight: 1024,
+        imageAltKey: 'project.boxify.imageAlt',
         url: 'https://github.com/emmanuelngompe/boxify',
     },
-    // {
-    //     title: 'VitalFin',
-    //     description:
-    //         'Application mobile combinant pilotage budgétaire personnel et indicateurs bien-être quotidiens.',
-    //     technologies: ['Flutter', 'Dart', 'Firebase', 'Node.js'],
-    //     image: null,
-    //     imageAlt: 'Aperçu du projet VitalFin',
-    //     url: 'https://example.com/vitalfin',
-    // },
+    
 ];
 
 export default PROJECTS;

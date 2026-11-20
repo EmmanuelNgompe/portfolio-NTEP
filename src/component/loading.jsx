@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import '../style/loading.css';
+import { useLanguage } from '../i18n/LanguageContext';
 
 function Loading({ onComplete }) {
+  const { t } = useLanguage();
   const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
@@ -18,9 +20,16 @@ function Loading({ onComplete }) {
     <div
       className={`loading-screen${isExiting ? ' loading-screen--exiting' : ''}`}
       role="status"
-      aria-label="Loading portfolio"
+      aria-label={t('loading.status')}
     >
-      <img className="loading-screen__logo" src="/logo-ntep.png" alt="NTEP" />
+      <img
+        className="loading-screen__logo"
+        src="/logo-ntep.png"
+        alt={t('loading.logoAlt')}
+        width="1086"
+        height="362"
+        loading="eager"
+      />
     </div>
   );
 }

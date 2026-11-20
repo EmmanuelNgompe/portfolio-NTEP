@@ -1,19 +1,56 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { Languages, Moon, Sun } from 'lucide-react';
 import '../style/menu.css';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const navigationLinks = [
-    { label: 'Accueil', to: '/' },
-    { label: 'Projets', to: '/project' },
-    { label: 'À propos', to: '/about' },
-    { label: 'Offres', to: '/offers' },
+    { labelKey: 'menu.home', to: '/' },
+    { labelKey: 'menu.projects', to: '/project' },
+    { labelKey: 'menu.about', to: '/about' },
+    { labelKey: 'menu.offers', to: '/offers' },
 ];
 
 function Menu() {
+    const { language, toggleLanguage, t } = useLanguage();
     const [isOpen, setIsOpen] = useState(false);
+    const [theme, setTheme] = useState(() =>
+        document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+    );
     const menuButtonRef = useRef(null);
     const closeButtonRef = useRef(null);
     const overlayRef = useRef(null);
+    const themeTransitionTimerRef = useRef(null);
+
+    function toggleTheme() {
+        const nextTheme = theme === 'dark' ? 'light' : 'dark';
+        const root = document.documentElement;
+        const reduceMotion =
+            window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+
+        if (!reduceMotion) {
+            window.clearTimeout(themeTransitionTimerRef.current);
+            root.classList.add('theme-transitioning');
+            themeTransitionTimerRef.current = window.setTimeout(
+                () => root.classList.remove('theme-transitioning'),
+                320
+            );
+        }
+
+        root.setAttribute('data-theme', nextTheme);
+        const themeColor = nextTheme === 'dark' ? '#030712' : '#f3f6fa';
+        document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute('content', themeColor);
+
+        try {
+            window.localStorage.setItem('theme', nextTheme);
+        } catch (error) {
+            // The theme still applies for this page view when storage is restricted.
+        }
+
+        setTheme(nextTheme);
+    }
 
     useEffect(() => {
         if (!isOpen) return undefined;
@@ -61,21 +98,51 @@ function Menu() {
     return (
         <>
             <header className="site-header">
-                <Link className="site-header__logo" to="/" aria-label="NTEP, accueil">
-                    <img src="/logo-ntep.png" alt="NTEP" />
+                <Link className="site-header__logo" to="/" aria-label={t('menu.logoLabel')}>
+                    <img
+                        src="/logo-ntep.png"
+                        alt="NTEP"
+                        width="1086"
+                        height="362"
+                        loading="eager"
+                    />
                 </Link>
-                <button
-                    ref={menuButtonRef}
-                    className="site-header__toggle"
-                    type="button"
-                    aria-label="Ouvrir le menu"
-                    aria-expanded={isOpen}
-                    aria-controls="site-menu"
-                    onClick={() => setIsOpen(true)}
-                >
-                    <span />
-                    <span />
-                </button>
+                <div className="site-header__actions">
+                    <button
+                        className="language-toggle"
+                        type="button"
+                        aria-label={language === 'en' ? t('menu.switchToFrench') : t('menu.switchToEnglish')}
+                        onClick={toggleLanguage}
+                    >
+                        <Languages aria-hidden="true" focusable="false" size={18} />
+                        <span>{language.toUpperCase()}</span>
+                    </button>
+                    <button
+                        className="theme-toggle"
+                        type="button"
+                        aria-label={theme === 'dark' ? t('menu.switchToLight') : t('menu.switchToDark')}
+                        aria-pressed={theme === 'dark'}
+                        onClick={toggleTheme}
+                    >
+                        {theme === 'dark' ? (
+                            <Sun aria-hidden="true" focusable="false" size={20} />
+                        ) : (
+                            <Moon aria-hidden="true" focusable="false" size={20} />
+                        )}
+                    </button>
+                    <button
+                        ref={menuButtonRef}
+                        className="site-header__toggle"
+                        type="button"
+                        aria-label={t('menu.open')}
+                        aria-expanded={isOpen}
+                        aria-controls="site-menu"
+                        onClick={() => setIsOpen(true)}
+                    >
+                        <span />
+                        <span />
+                    </button>
+                </div>
             </header>
 
             <div
@@ -88,15 +155,15 @@ function Menu() {
                     ref={closeButtonRef}
                     className="site-menu__close"
                     type="button"
-                    aria-label="Fermer le menu"
+                    aria-label={t('menu.close')}
                     onClick={() => setIsOpen(false)}
                     tabIndex={isOpen ? 0 : -1}
                 >
                     <span />
                     <span />
                 </button>
-                <nav className="site-menu__navigation" aria-label="Navigation principale">
-                    {navigationLinks.map(({ label, to }) => (
+                <nav className="site-menu__navigation" aria-label={t('menu.mainNavigation')}>
+                    {navigationLinks.map(({ labelKey, to }) => (
                         <NavLink
                             key={to}
                             to={to}
@@ -107,7 +174,7 @@ function Menu() {
                             }
                             onClick={() => setIsOpen(false)}
                         >
-                            {label}
+                            {t(labelKey)}
                         </NavLink>
                     ))}
                 </nav>
